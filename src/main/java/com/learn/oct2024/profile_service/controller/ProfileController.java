@@ -23,6 +23,11 @@ public class ProfileController {
         return "Hello User";
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<AppUser> getUserById(@PathVariable(value = "id") String userId) {
+        return userService.getUserById(userId);
+    }
+
     @PostMapping(value = "/user/create")
     @PreAuthorize("hasAuthority('admin')")
     public ResponseEntity<AppUser> createUser(@RequestBody UserInfoRequest userInfoRequest) {

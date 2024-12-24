@@ -99,4 +99,15 @@ public class UserServiceImpl implements UserService {
         firstBooker.setBalance(firstBooker.getBalance() - userAction.getAmount());
         userRepository.save(firstBooker);
     }
+
+    @Override
+    public ResponseEntity<AppUser> getUserById(String userId) {
+        log.info("Receive get user info by id request, with id: " + userId);
+        Optional<AppUser> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            return ResponseEntity.ok(optionalUser.get());
+        } else {
+            return ResponseEntity.ok(AppUser.builder().build());
+        }
+    }
 }

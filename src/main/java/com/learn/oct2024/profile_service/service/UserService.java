@@ -16,4 +16,6 @@ public interface UserService {
     void getUserInfo(UserActionRequest userAction, Headers headers);
 
     void adjustBalance(UserActionRequest userAction, Headers headers);
+
+    ResponseEntity<AppUser> getUserById(String userId);
 }
