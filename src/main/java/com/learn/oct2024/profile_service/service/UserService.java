@@ -3,6 +3,7 @@ package com.learn.oct2024.profile_service.service;
 import com.learn.oct2024.common.model.dto.UserActionRequest;
 import com.learn.oct2024.common.model.dto.UserInfoRequest;
 import com.learn.oct2024.common.model.entity.AppUser;
+import com.learn.oct2024.profile_service.model.dto.UserDto;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.header.Headers;
 import org.springframework.http.ResponseEntity;
@@ -17,5 +18,5 @@ public interface UserService {
 
     void adjustBalance(UserActionRequest userAction, Headers headers);
 
-    ResponseEntity<AppUser> getUserById(String userId);
+    ResponseEntity<UserDto> getUserById(String userId);
 }

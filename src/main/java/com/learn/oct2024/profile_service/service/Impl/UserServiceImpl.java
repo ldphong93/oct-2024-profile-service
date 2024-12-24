@@ -3,6 +3,7 @@ package com.learn.oct2024.profile_service.service.Impl;
 import com.learn.oct2024.common.model.dto.UserActionRequest;
 import com.learn.oct2024.common.model.dto.UserInfoRequest;
 import com.learn.oct2024.common.model.entity.AppUser;
+import com.learn.oct2024.profile_service.model.dto.UserDto;
 import com.learn.oct2024.profile_service.repository.UserRepository;
 import com.learn.oct2024.profile_service.service.KafkaService;
 import com.learn.oct2024.profile_service.service.UserService;
@@ -101,13 +102,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<AppUser> getUserById(String userId) {
+    public ResponseEntity<UserDto> getUserById(String userId) {
         log.info("Receive get user info by id request, with id: " + userId);
         Optional<AppUser> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
-            return ResponseEntity.ok(optionalUser.get());
+            AppUser appUser = optionalUser.get();
+            UserDto userDto = UserDto.builder()
+                    .id(appUser.getId())
+                    .username(appUser.getUsername())
+                    .role(appUser.getRole())
+                    .balance(appUser.getBalance())
+                    .build();
+            return ResponseEntity.ok(userDto);
         } else {
-            return ResponseEntity.ok(AppUser.builder().build());
+            return ResponseEntity.ok(UserDto.builder().build());
         }
     }
 }

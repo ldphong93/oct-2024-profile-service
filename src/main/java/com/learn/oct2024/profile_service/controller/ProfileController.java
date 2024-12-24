@@ -2,6 +2,7 @@ package com.learn.oct2024.profile_service.controller;
 
 import com.learn.oct2024.common.model.dto.UserInfoRequest;
 import com.learn.oct2024.common.model.entity.AppUser;
+import com.learn.oct2024.profile_service.model.dto.UserDto;
 import com.learn.oct2024.profile_service.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class ProfileController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<AppUser> getUserById(@PathVariable(value = "id") String userId) {
+    public ResponseEntity<UserDto> getUserById(@PathVariable(value = "id") String userId) {
         return userService.getUserById(userId);
     }
 
