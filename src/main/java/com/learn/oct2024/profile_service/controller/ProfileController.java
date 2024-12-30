@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j(topic = "ProfileController")
-@CrossOrigin(origins = "http://localhost:3000")
 public class ProfileController {
 
     @Autowired
